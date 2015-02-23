@@ -7,7 +7,7 @@
 
 WELCOME
 =======
-
+ 
 Congratulations you have just created a new Mule project!
 
 This wizard created a number of new classes and resources useful for new Mule
