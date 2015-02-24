@@ -44,14 +44,19 @@
         <vm:outbound-endpoint path="out"/>
     </flow>
     -->
-    <ws:consumer-config doc:name="Web Service Consumer" name="Web_Service_Consumer" port="TshirtServicePort" 
-    	service="TshirtService" 
+    <ws:consumer-config doc:name="Web Service Consumer" name="Web_Service_Consumer" port="TshirtServicePortTypePort" 
+    	service="TshirtServicePortTypeService" 
     	serviceAddress="http://tshirt-service.cloudhub.io" 
-    	wsdlLocation="tshirt.wsdl"/>
+    	wsdlLocation="src/main/app/tshirt.wsdl"/>
     <http:listener-config name="HTTP_Listener_Configuration" host="localhost" port="8081"/>
 	<flow name="exampleFlow1" doc:name="exampleFlow1">
 	    <http:listener config-ref="HTTP_Listener_Configuration" path="/" doc:name="HTTP Connector"/>
-	    <set-payload value="Hello World!" doc:name="Set Payload"/>
+	    <!--  <set-payload value="Hello World!" doc:name="Set Payload"/> -->
+	    <!-- <set-payload value="&lt;OrderTshirt&gt;&lt;size&gt;1&lt;/size&gt;&lt;email&gt;sdf2@sdfco.com&lt;/email&gt;&lt;name&gt;dsf&lt;/name&gt;&lt;address1&gt;sdsfd&lt;/address1&gt;&lt;address2&gt;sdf&lt;/address2&gt;&lt;city&gt;dsfs&lt;/city&gt;&lt;stateOrProvince&gt;sdfs&lt;/stateOrProvince&gt;&lt;postalCode&gt;34345&lt;/postalCode&gt;&lt;country&gt;Italy&lt;/country&gt;&lt;/OrderTshirt&gt;" doc:name="Set Payload"/>  -->
 	    <logger doc:name="Logger" level="ERROR" message="About to echo #[message.payload]"/>
+	    <ws:consumer config-ref="Web_Service_Consumer" doc:name="Order Tshirt" operation="OrderTshirt"/>
+	    <mule-xml:xml-prettyprinter-transformer name="XmlPrettyPrinter" />
+	    <logger doc:name="Logger" level="ERROR" message="About 2 to echo #[message.payload:java.lang.String]"/>
+	    <!-- <http:response-builder contentType="application/xml" doc:name="HTTP Response Builder" status="200"/>  -->
 	</flow>
 </mule>
