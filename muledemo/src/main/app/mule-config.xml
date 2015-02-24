@@ -45,13 +45,13 @@
     	wsdlLocation="http://tshirt-service.cloudhub.io/?wsdl"/>
     <http:listener-config name="HTTP_Listener_Configuration" host="localhost" port="8081"/>
     
-    <!-- 
-    <flow name="main">
-        <vm:inbound-endpoint path="in" exchange-pattern="request-response"/>
+    
+    <flow name="queue">
+        <vm:inbound-endpoint path="in" exchange-pattern="one-way"/>
         <echo-component/>
-        <vm:outbound-endpoint path="out"/>
+        <logger doc:name="Logger" level="ERROR" message="message in queue #[message.payload:java.lang.String]"/>
     </flow>
-     -->
+    
     
 	<flow name="exampleFlow1" doc:name="exampleFlow1">
 	    <http:listener config-ref="HTTP_Listener_Configuration" path="/" doc:name="HTTP Connector"/>
@@ -62,6 +62,7 @@
 	    <mule-xml:xml-prettyprinter-transformer name="XmlPrettyPrinter" />
 	    <logger doc:name="Logger" level="ERROR" message="About 2 to echo #[message.payload:java.lang.String]"/>
 	    <component doc:name="Java" class="com.developingit.mule.muledemo.TestComponent"/>
+	    <vm:outbound-endpoint path="in"/>
 	    <!-- <http:response-builder contentType="application/xml" doc:name="HTTP Response Builder" status="200"/>  -->
 	</flow>
 </mule>
