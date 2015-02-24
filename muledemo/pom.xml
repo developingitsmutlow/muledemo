@@ -45,7 +45,7 @@
                 <artifactId>maven-mule-plugin</artifactId>
                 <version>1.9</version>
                 <extensions>true</extensions>
-                <configuration>
+                <configuration>                
                     <copyToAppsDirectory>true</copyToAppsDirectory>
                 </configuration>
             </plugin>

@@ -37,18 +37,22 @@
     mule demo
     </description>
 
-<!-- 
+ 
+
+    <ws:consumer-config doc:name="Web Service Consumer" name="Web_Service_Consumer" port="TshirtServicePortTypePort" 
+    	service="TshirtServicePortTypeService" 
+    	serviceAddress="http://tshirt-service.cloudhub.io" 
+    	wsdlLocation="http://tshirt-service.cloudhub.io/?wsdl"/>
+    <http:listener-config name="HTTP_Listener_Configuration" host="localhost" port="8081"/>
+    
+    <!-- 
     <flow name="main">
         <vm:inbound-endpoint path="in" exchange-pattern="request-response"/>
         <echo-component/>
         <vm:outbound-endpoint path="out"/>
     </flow>
-    -->
-    <ws:consumer-config doc:name="Web Service Consumer" name="Web_Service_Consumer" port="TshirtServicePortTypePort" 
-    	service="TshirtServicePortTypeService" 
-    	serviceAddress="http://tshirt-service.cloudhub.io" 
-    	wsdlLocation="src/main/app/tshirt.wsdl"/>
-    <http:listener-config name="HTTP_Listener_Configuration" host="localhost" port="8081"/>
+     -->
+    
 	<flow name="exampleFlow1" doc:name="exampleFlow1">
 	    <http:listener config-ref="HTTP_Listener_Configuration" path="/" doc:name="HTTP Connector"/>
 	    <!--  <set-payload value="Hello World!" doc:name="Set Payload"/> -->
@@ -57,6 +61,7 @@
 	    <ws:consumer config-ref="Web_Service_Consumer" doc:name="Order Tshirt" operation="OrderTshirt"/>
 	    <mule-xml:xml-prettyprinter-transformer name="XmlPrettyPrinter" />
 	    <logger doc:name="Logger" level="ERROR" message="About 2 to echo #[message.payload:java.lang.String]"/>
+	    <component doc:name="Java" class="com.developingit.mule.muledemo.TestComponent"/>
 	    <!-- <http:response-builder contentType="application/xml" doc:name="HTTP Response Builder" status="200"/>  -->
 	</flow>
 </mule>

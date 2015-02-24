@@ -9,6 +9,7 @@ package com.developingit.mule.muledemo;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -19,6 +20,7 @@ import org.mule.transport.NullPayload;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -30,12 +32,11 @@ public class MuleDemoTestCase extends FunctionalTestCase
     protected String getConfigResources()
     {
         //TODO You'll need to edit this file to make the test applicable to your module
-        //return "muledemo-functional-test-config.xml";
-        return "mule-config.xml";
+        return "muledemo-functional-test-config.xml";
+        //return "mule-config.xml";
     }
 
     @Test
-    @Ignore
     public void muledemo() throws Exception
     {
         MuleClient client = muleContext.getClient();
@@ -51,6 +52,7 @@ public class MuleDemoTestCase extends FunctionalTestCase
     }
     
     @Test
+    @Ignore
     public void muledemohttp() throws Exception
     {
     	MuleClient client = muleContext.getClient();
@@ -60,5 +62,26 @@ public class MuleDemoTestCase extends FunctionalTestCase
         assertNotNull(result);
         assertFalse(result.getPayload() instanceof NullPayload);
         assertEquals(MESSAGE, result.getPayloadAsString());
+    }
+    
+    @Test
+    @Ignore
+    public void muledemohttpsoap() throws Exception
+    {
+    	MuleClient client = muleContext.getClient();
+        Map<String, Object> props = new HashMap<String, Object>();
+        props.put("http.method", "POST");
+        props.put("Content-type", "application/xml");
+        //props.put("Accept", "text/plain");
+        String payload = "<tsh:OrderTshirt xmlns:tsh=\"http://mulesoft.org/tshirt-service\"><size>S</size><email>sddcddddfaaddw2@sdfco.com</email><name>dsf</name><address1>sdsfd</address1><address2>sdf</address2><city>dsfs</city><stateOrProvince>sdfs</stateOrProvince><postalCode>34345</postalCode><country>Italy</country></tsh:OrderTshirt>";
+        
+        Random rnd = new Random();
+        //payload = payload.replace("_random_", String.valueOf(100000 + rnd.nextInt(900000)));
+        System.out.println(payload);
+        //MuleMessage req = MuleMessage
+        MuleMessage result = client.send("http://localhost:8081/", "ASDSA", props);
+        assertNotNull(result);
+        assertFalse(result.getPayload() instanceof NullPayload);
+        assertTrue(result.getPayloadAsString().contains("orderId"));
     }
 }
