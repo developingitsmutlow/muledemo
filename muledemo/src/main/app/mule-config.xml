@@ -14,6 +14,7 @@
       xmlns:sxc="http://www.mulesoft.org/schema/mule/sxc"
       xmlns:mule-xml="http://www.mulesoft.org/schema/mule/xml" 
       xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" 
+      xmlns:ws="http://www.mulesoft.org/schema/mule/ws"
     xsi:schemaLocation="
         http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/3.6/mule.xsd
         http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/3.6/mule-file.xsd
@@ -28,7 +29,8 @@
         http://www.mulesoft.org/schema/mule/sxc http://www.mulesoft.org/schema/mule/sxc/3.6/mule-sxc.xsd
         http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/3.6/mule-xml.xsd
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-        http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/3.6/mule-jms.xsd">
+        http://www.mulesoft.org/schema/mule/jms http://www.mulesoft.org/schema/mule/jms/3.6/mule-jms.xsd
+        http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/3.6/mule-ws.xsd">
         
 
     <description>
@@ -42,6 +44,10 @@
         <vm:outbound-endpoint path="out"/>
     </flow>
     -->
+    <ws:consumer-config doc:name="Web Service Consumer" name="Web_Service_Consumer" port="TshirtServicePort" 
+    	service="TshirtService" 
+    	serviceAddress="http://tshirt-service.cloudhub.io" 
+    	wsdlLocation="tshirt.wsdl"/>
     <http:listener-config name="HTTP_Listener_Configuration" host="localhost" port="8081"/>
 	<flow name="exampleFlow1" doc:name="exampleFlow1">
 	    <http:listener config-ref="HTTP_Listener_Configuration" path="/" doc:name="HTTP Connector"/>
