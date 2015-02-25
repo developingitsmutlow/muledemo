@@ -5,7 +5,7 @@
 
 
 
-WELCOME
+WELCOMEa
 =======
  
 Congratulations you have just created a new Mule project!
