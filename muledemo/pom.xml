@@ -12,6 +12,7 @@
     <description>mule demo</description>
 
     <properties>
+        <project.dependencies.scope.provided>provided</project.dependencies.scope.provided>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -213,14 +214,14 @@
             <groupId>org.mule</groupId>
             <artifactId>mule-core</artifactId>
             <version>${mule.version}</version>
-            <scope>provided</scope>
+            <scope>${project.dependencies.scope.provided}</scope>
         </dependency>
         <!-- Xml configuration -->
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-spring-config</artifactId>
             <version>${mule.version}</version>
-            <scope>provided</scope>
+            <scope>${project.dependencies.scope.provided}</scope>
         </dependency>
 
         <!-- Mule Transports -->
@@ -228,31 +229,31 @@
             <groupId>org.mule.transports</groupId>
             <artifactId>mule-transport-file</artifactId>
             <version>${mule.version}</version>
-            <scope>provided</scope>
+            <scope>${project.dependencies.scope.provided}</scope>
         </dependency>
         <dependency>
             <groupId>org.mule.transports</groupId>
             <artifactId>mule-transport-http</artifactId>
             <version>${mule.version}</version>
-            <scope>provided</scope>
+            <scope>${project.dependencies.scope.provided}</scope>
         </dependency>
         <dependency>
             <groupId>org.mule.transports</groupId>
             <artifactId>mule-transport-jdbc</artifactId>
             <version>${mule.version}</version>
-            <scope>provided</scope>
+            <scope>${project.dependencies.scope.provided}</scope>
         </dependency>
         <dependency>
             <groupId>org.mule.transports</groupId>
             <artifactId>mule-transport-jms</artifactId>
             <version>${mule.version}</version>
-            <scope>provided</scope>
+            <scope>${project.dependencies.scope.provided}</scope>
         </dependency>
         <dependency>
             <groupId>org.mule.transports</groupId>
             <artifactId>mule-transport-vm</artifactId>
             <version>${mule.version}</version>
-            <scope>provided</scope>
+            <scope>${project.dependencies.scope.provided}</scope>
         </dependency>
 
         <!-- Mule Modules -->
@@ -260,43 +261,43 @@
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-client</artifactId>
             <version>${mule.version}</version>
-            <scope>provided</scope>
+            <scope>${project.dependencies.scope.provided}</scope>
         </dependency>
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-cxf</artifactId>
             <version>${mule.version}</version>
-            <scope>provided</scope>
+            <scope>${project.dependencies.scope.provided}</scope>
         </dependency>
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-management</artifactId>
             <version>${mule.version}</version>
-            <scope>provided</scope>
+            <scope>${project.dependencies.scope.provided}</scope>
         </dependency>
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-scripting</artifactId>
             <version>${mule.version}</version>
-            <scope>provided</scope>
+            <scope>${project.dependencies.scope.provided}</scope>
         </dependency>
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-sxc</artifactId>
             <version>${mule.version}</version>
-            <scope>provided</scope>
+            <scope>${project.dependencies.scope.provided}</scope>
         </dependency>
         <dependency>
             <groupId>org.mule.modules</groupId>
             <artifactId>mule-module-xml</artifactId>
             <version>${mule.version}</version>
-            <scope>provided</scope>
+            <scope>${project.dependencies.scope.provided}</scope>
         </dependency>
 		<dependency>
 			<groupId>org.mule.modules</groupId>
 			<artifactId>mule-module-ws</artifactId>
             <version>${mule.version}</version>
-            <scope>provided</scope>
+            <scope>${project.dependencies.scope.provided}</scope>
 		</dependency>                
         <!-- for testing -->
         <dependency>
