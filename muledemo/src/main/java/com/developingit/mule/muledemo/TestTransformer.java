@@ -11,7 +11,7 @@ public class TestTransformer extends AbstractMessageTransformer{
     public Object transformMessage(MuleMessage message, String outputEncoding) throws TransformerException {
             
     	String payload = message.getPayload(String.class);
-    	payload = payload.replace("order", "a-order");
+    	payload = payload.replace("order", "abs-order");
     	return payload;
     }
 }
